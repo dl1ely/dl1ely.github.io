@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Thu, 21 Jul 2016 21:23:53 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How to lure new contributors into your open source projects]]></title><description><![CDATA[<div class="sect1">
+<h2 id="_tl_dr">tl;dr</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want new people to contribute to your open source project, make it easy for them, not hard. Give them positive feedback and provide some guidance in your code base. Deliberately leave some easy to solve but less critical tasks for them to allow for achievable motivating success. Think gaming where you need an easy start to stick to the game before entering the hard, demanding levels.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_long_version">Long Version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this years <a href="http://www.froscon.org">FrOSCon 8</a> <a href="http://isabel-drost-fromm.de/">Isabel Drost-Fromm</a> (also on (<a href="https://github.com/mainec">GitHub</a> and <a href="https://twitter.com/MaineC">Twitter</a>) held a talk labeled <a href="http://programm.froscon.org/2013/events/1208.html">„Talking people into creating patches“</a>. There were some maintainers of open source projects in the room, and many of them expressed they lack a sufficient number of contributors for their projects.</p>
+</div>
+<div class="paragraph">
+<p>In the Q&amp;A session i took the microphone and shared my view of a willing, but mostly unsuccessful contributor to projects. My observations seemed to be received well by the audience, so i want to keep hold of them here:</p>
+</div>
+<div class="sect2">
+<h3 id="_do_not_accidently_overlook_contributions">Do not accidently overlook contributions</h3>
+<div class="paragraph">
+<p>Put extra into effort into not accidently overlooking even small contributions, as this might frustrate the new contributors, driving them away from your project forever.</p>
+</div>
+<div class="paragraph">
+<p>In a small project i once saw a nice, well done pull request on <a href="https://github.com/">GitHub</a> was left unanswered. Not rejected, not due for improvement, simply ignored. I needed that special feature in there for my own work, so i pressed the maintainer to take the pull request or i would fork his project and continue my work in my own fork. All in a sudden accepting the pull request was no problem. Do not do this, unless there is a real problem with the pull request. Explain why.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_do_not_use_the_issue_tracker_as_your_personal_todo_list_it_is_public">Do not use the issue tracker as your personal ToDo-list — it is public!</h3>
+<div class="paragraph">
+<p>Especially in projects with a small and closed group of contributors, often the public issue list looks like a personal ToDo-list for the guy that wrote the issue: just the subject line, no details, no context and no clear goal understandable to someone getting freshly into the project. Always write your issues such that anyone (not only you) can understand what should be done, and perhaps even what should be the preferred way to solve the issue. Writing good issue descriptions needs more knowledge of the code than resolving such a well-written issue, and in bad cases, may take as much time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deliberately_keep_some_low_hanging_fruit_for_the_newcomers">Deliberately keep some low hanging fruit for the newcomers</h3>
+<div class="paragraph">
+<p>Keep some easy, manageable tasks for the new guys in your open issues, even if you as an experienced guy could do them in minutes. Best for that are the non-critical tasks with a clear scope. These can be the breadcrumbs that build self confidence in your new contributor and motivate them to tackle the harder tasks while they follow you into the thicket of your code base. You as the experienced core developer should crack the hard nuts in your issue tracker, not the trivial ones.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_some_high_level_guide_describing_the_structure_of_your_project">Write some high-level-guide describing the structure of your project</h3>
+<div class="paragraph">
+<p>If your code base structure exceeds triviality (which it quickly does, especially with Java projects), provide new contributors a high-level overview over your code structure and architecture (every piece of software has an architecture, whether you are aware of it or not). Think of it as an <code>README</code> not for the user of but for the contributor to your project. Make them comfortable with some of the previously unwritten rules in your project <strong>before</strong> problems arise, and</p>
+</div>
+</div>
+</div>
+</div>]]></description><link>http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html</link><guid isPermaLink="true">http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html</guid><category><![CDATA[open-source]]></category><dc:creator><![CDATA[Stefan Pfeiffer]]></dc:creator><pubDate>Tue, 27 Aug 2013 00:00:00 GMT</pubDate></item></channel></rss>

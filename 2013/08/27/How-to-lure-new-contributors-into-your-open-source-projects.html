@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>How to lure new contributors into your open source projects</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://www.stefan-pfeiffer.de/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//www.stefan-pfeiffer.de/themes/casper/assets/css/screen.css?v=1469136233934" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Dr. Stefan Pfeiffer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to lure new contributors into your open source projects" />
+    <meta property="og:description" content="tl;dr If you want new people to contribute to your open source project, make it easy for them, not hard. Give them positive feedback and provide some guidance in your code base. Deliberately leave some easy to solve but less critical tasks for them to allow for achievable motivating" />
+    <meta property="og:url" content="http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html" />
+    <meta property="article:tag" content="open-source" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How to lure new contributors into your open source projects" />
+    <meta name="twitter:description" content="tl;dr If you want new people to contribute to your open source project, make it easy for them, not hard. Give them positive feedback and provide some guidance in your code base. Deliberately leave some easy to solve but less critical tasks for them to allow for achievable motivating" />
+    <meta name="twitter:url" content="http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Dr. Stefan Pfeiffer" href="http://www.stefan-pfeiffer.de/rss/" />
+</head>
+<body class="post-template tag-open-source nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="http://www.stefan-pfeiffer.de"><img src="https://avatars3.githubusercontent.com/u/427752?v&#x3D;3&amp;s&#x3D;460" alt="Dr. Stefan Pfeiffer" /></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-open-source">
+
+        <header class="post-header">
+            <h1 class="post-title">How to lure new contributors into your open source projects</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2013-08-27">27 August 2013</time>  on <a href="http://www.stefan-pfeiffer.de/tag/open-source/">open-source</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="sect1">
+<h2 id="_tl_dr">tl;dr</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want new people to contribute to your open source project, make it easy for them, not hard. Give them positive feedback and provide some guidance in your code base. Deliberately leave some easy to solve but less critical tasks for them to allow for achievable motivating success. Think gaming where you need an easy start to stick to the game before entering the hard, demanding levels.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_long_version">Long Version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this years <a href="http://www.froscon.org">FrOSCon 8</a> <a href="http://isabel-drost-fromm.de/">Isabel Drost-Fromm</a> (also on (<a href="https://github.com/mainec">GitHub</a> and <a href="https://twitter.com/MaineC">Twitter</a>) held a talk labeled <a href="http://programm.froscon.org/2013/events/1208.html">„Talking people into creating patches“</a>. There were some maintainers of open source projects in the room, and many of them expressed they lack a sufficient number of contributors for their projects.</p>
+</div>
+<div class="paragraph">
+<p>In the Q&amp;A session i took the microphone and shared my view of a willing, but mostly unsuccessful contributor to projects. My observations seemed to be received well by the audience, so i want to keep hold of them here:</p>
+</div>
+<div class="sect2">
+<h3 id="_do_not_accidently_overlook_contributions">Do not accidently overlook contributions</h3>
+<div class="paragraph">
+<p>Put extra into effort into not accidently overlooking even small contributions, as this might frustrate the new contributors, driving them away from your project forever.</p>
+</div>
+<div class="paragraph">
+<p>In a small project i once saw a nice, well done pull request on <a href="https://github.com/">GitHub</a> was left unanswered. Not rejected, not due for improvement, simply ignored. I needed that special feature in there for my own work, so i pressed the maintainer to take the pull request or i would fork his project and continue my work in my own fork. All in a sudden accepting the pull request was no problem. Do not do this, unless there is a real problem with the pull request. Explain why.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_do_not_use_the_issue_tracker_as_your_personal_todo_list_it_is_public">Do not use the issue tracker as your personal ToDo-list — it is public!</h3>
+<div class="paragraph">
+<p>Especially in projects with a small and closed group of contributors, often the public issue list looks like a personal ToDo-list for the guy that wrote the issue: just the subject line, no details, no context and no clear goal understandable to someone getting freshly into the project. Always write your issues such that anyone (not only you) can understand what should be done, and perhaps even what should be the preferred way to solve the issue. Writing good issue descriptions needs more knowledge of the code than resolving such a well-written issue, and in bad cases, may take as much time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deliberately_keep_some_low_hanging_fruit_for_the_newcomers">Deliberately keep some low hanging fruit for the newcomers</h3>
+<div class="paragraph">
+<p>Keep some easy, manageable tasks for the new guys in your open issues, even if you as an experienced guy could do them in minutes. Best for that are the non-critical tasks with a clear scope. These can be the breadcrumbs that build self confidence in your new contributor and motivate them to tackle the harder tasks while they follow you into the thicket of your code base. You as the experienced core developer should crack the hard nuts in your issue tracker, not the trivial ones.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_some_high_level_guide_describing_the_structure_of_your_project">Write some high-level-guide describing the structure of your project</h3>
+<div class="paragraph">
+<p>If your code base structure exceeds triviality (which it quickly does, especially with Java projects), provide new contributors a high-level overview over your code structure and architecture (every piece of software has an architecture, whether you are aware of it or not). Think of it as an <code>README</code> not for the user of but for the contributor to your project. Make them comfortable with some of the previously unwritten rules in your project <strong>before</strong> problems arise, and</p>
+</div>
+</div>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="http://www.stefan-pfeiffer.de/author/dl1ely/" style="background-image: url(https://avatars.githubusercontent.com/u/427752?v&#x3D;3)"><span class="hidden">Stefan Pfeiffer's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="http://www.stefan-pfeiffer.de/author/dl1ely/">Stefan Pfeiffer</a></h4>
+
+                    <p>Read <a href="http://www.stefan-pfeiffer.de/author/dl1ely/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Aachen, Germany</span>
+                    <span class="author-link icon-link"><a href="http://dl1ely.github.io">http://dl1ely.github.io</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=How%20to%20lure%20new%20contributors%20into%20your%20open%20source%20projects&amp;url=http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.stefan-pfeiffer.de/2013/08/27/How-to-lure-new-contributors-into-your-open-source-projects.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'stefan-pfeiffer'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://www.stefan-pfeiffer.de">Dr. Stefan Pfeiffer</a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script type="text/javascript" src="//www.stefan-pfeiffer.de/themes/casper/assets/js/jquery.fitvids.js?v=1469136233934"></script>
+    <script type="text/javascript" src="//www.stefan-pfeiffer.de/themes/casper/assets/js/index.js?v=1469136233934"></script>
+
+</body>
+</html>

@@ -6,7 +6,11 @@
     "cname": "www.stefan-pfeiffer.de"
   },
   "site": {},
-  "socialnetwork": {},
+  "socialnetwork": {
+    "email": "stefan@fam-pfeiffer.de",
+    "twitter": "spfeiffr",
+    "github": "dl1ely"
+  },
   "theme": {
     "name": "casper"
   }

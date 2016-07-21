@@ -5,7 +5,13 @@
     "branch": "master",
     "cname": "www.stefan-pfeiffer.de"
   },
-  "site": {},
+  "site": {
+    "title": "Dr. Stefan Pfeiffer",
+    "description": "All Things Programming - mostly functional!",
+    "logo": "https://avatars3.githubusercontent.com/u/427752?v=3&s=460",
+    "postsPerPage": "5",
+    "disqus": "stefan-pfeiffer"
+  },
   "socialnetwork": {
     "email": "stefan@fam-pfeiffer.de",
     "twitter": "spfeiffr",

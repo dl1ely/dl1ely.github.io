@@ -1,7 +1,6 @@
 = Calling variadic Java Functions from Clojure
 :published_at: 2014-12-04
 :hp-tags: clojure
-:source-highlighter: highlightjs
 
 ## tl;dr
 When calling variadic Java functions with `<Type>...` somewhere in its signature, wrap these 

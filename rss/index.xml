@@ -1,4 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 18:03:45 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Is Open Source Software inherently insecure?]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 18:17:18 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Calling variadic Java Functions from Clojure]]></title><description><![CDATA[<div class="sect1">
+<h2 id="_tl_dr">tl;dr</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When calling variadic Java functions with <code>&lt;Type&gt;&#8230;&#8203;</code> somewhere in its signature, wrap these
+arguments into <code>(into-array &lt;Type&gt; [argument1 argument2 …])</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_story">The Story</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure makes Java interop easy. But recently i stumbled a little bit when i tried to call
+a variadic (variable argument count) Java function. The function i had to call was
+<code>public static String format(Locale l, String format, Object&#8230;&#8203; args)</code>. I know there is <a href="https://clojuredocs.org/clojure.core/format"><code>format</code></a>
+in <code>(ns clojure.core)</code>, but it lacks the Locale support.</p>
+</div>
+<div class="paragraph">
+<p>I tried the naive approach:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" n))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which fails miserably:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ClassCastException java.lang.Double cannot be cast to [Ljava.lang.Object;  user/eval715</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The error message gives away how Java does variadic functions: <code>[L</code> is the type signature of an array.
+<code>Object&#8230;&#8203;</code> is just syntactic sugar for <code>Object[]</code>. Arrays must be something like <code>vec</code> in Clojure, right?
+Let&#8217;s try:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" [n]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nope, no progress here:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ClassCastException clojure.lang.PersistentVector cannot be cast to [Ljava.lang.Object;  user/eval717</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Luckily, there is the <a href="https://clojuredocs.org/clojure.core/into-array"><code>into-array</code></a> function in its <code>(into-array type aseq)</code> form that takes the type of the elements in the array instead of guessing them from the elements in <code>aseq</code>. Let&#8217;s try this one:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>user=&gt; (into-array Object [3.1415926])
+#&lt;Object[] [Ljava.lang.Object;@4351451d&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That looks like the type signature we need. Now we can guess the right way to call <code>String/format</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+    (String/format locale "%2.1f" (into-array Object [n])))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yielding <code>"3,1"</code>. Finally there.</p>
+</div>
+</div>
+</div>]]></description><link>http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html</link><guid isPermaLink="true">http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html</guid><category><![CDATA[clojure]]></category><dc:creator><![CDATA[Stefan Pfeiffer]]></dc:creator><pubDate>Thu, 04 Dec 2014 00:00:00 GMT</pubDate></item><item><title><![CDATA[Is Open Source Software inherently insecure?]]></title><description><![CDATA[<div class="paragraph">
 <p>Recently, <a href="http://blog.fimsch.net">Konrad</a> wrote an <a href="http://blog.fimsch.net/2013/09/on-open-source-security/">article</a> about his thoughts that commercial software products may be more secure than (or at least as secure as) their open source counterparts, because software companies can afford to do serious testing, quality assurance and audits.</p>
 </div>
 <div class="paragraph">

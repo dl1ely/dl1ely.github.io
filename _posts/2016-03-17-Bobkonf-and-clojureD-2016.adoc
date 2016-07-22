@@ -1,0 +1,20 @@
+= Bobkonf and :clojureD 2016
+:published_at: 2016-03-17
+:hp-tags: clojure
+---
+
+This year again, http://www.bobkonf.de/2016/de/[Bobkonf] and http://www.clojured.de[:clojureD] made a back-to-back appearance on the 19th and 20th of February in Berlin and i was very happy to participate in both. 
+
+## BobKonf
+On Friday at BobKonf i especially enjoyed the Clojure talk of https://twitter.com/michaelvitz[Michael Vitz] which is recorded https://www.innoq.com/en/talks/2016/02/clojure-webapps/[here], and the „Specification by Example“ interactive workshop held by https://twitter.com/nicolerauch[Nicole Rauch]. This workshop first threw me into a very controversial mood, but after a slow start all the pieces fit together and i saw the big picture. These are the really valuable events, when you do not hear things that you already know and believe, but that overthrow some of the very beaten paths in the brain. Thanks for that!
+
+Like last year, the event was well organized and the location was still suitable.
+
+## :clojureD
+On Saturday it was Clojure-time! At http://www.clojured.de[:clojureD] the number of participants jumped to 180 this year, yielding a quite impressive group photo on the stairs of the Beuth Hochschule. 
+
+image::https://pbs.twimg.com/media/CbprIrbW8AAL2pK.jpg[Group Photo]
+
+Luckily, the second smaller lecture hall was changed to a bigger one this year, so everyone could find a seat. 
+
+The talks were great again, right from the start, https://twitter.com/toxi[Karsten Schmidt] blew us away with his https://www.youtube.com/watch?v=4w2kpSL68nM[keynote about creative uses of Clojure]. I am not a very creative or art-loving guy, but what he showed was really great. After that i attended talks about actor systems and Erlang (on a Clojure conference!). After the lunch break, i watched Joel Kuiper in his first talk at a programming conference https://www.instagram.com/p/BCAlmUkMU1O/[improvising on the black board] until the beamer worked again (Great job, Joel!). Wrapping up with experience reports about React Native, type systems and managing your dependencies (in the „DI” sense, not the „lein“ or „boot” sense), i left this wonderful conference. It is very affordable and has great content. I will return in 2017 for sure!

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Calling variadic Java Functions from Clojure</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://www.stefan-pfeiffer.de/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//www.stefan-pfeiffer.de/themes/casper/assets/css/screen.css?v=1469211438388" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Dr. Stefan Pfeiffer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calling variadic Java Functions from Clojure" />
+    <meta property="og:description" content="tl;dr When calling variadic Java functions with &amp;lt;Type&amp;gt;&amp;#8230;&amp;#8203; somewhere in its signature, wrap these arguments into (into-array &amp;lt;Type&amp;gt; [argument1 argument2 …]). The Story Clojure makes Java interop easy. But recently i stumbled a little bit when i tried to call a variadic (variable argument" />
+    <meta property="og:url" content="http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html" />
+    <meta property="article:tag" content="clojure" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Calling variadic Java Functions from Clojure" />
+    <meta name="twitter:description" content="tl;dr When calling variadic Java functions with &amp;lt;Type&amp;gt;&amp;#8230;&amp;#8203; somewhere in its signature, wrap these arguments into (into-array &amp;lt;Type&amp;gt; [argument1 argument2 …]). The Story Clojure makes Java interop easy. But recently i stumbled a little bit when i tried to call a variadic (variable argument" />
+    <meta name="twitter:url" content="http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Dr. Stefan Pfeiffer" href="http://www.stefan-pfeiffer.de/rss/" />
+</head>
+<body class="post-template tag-clojure nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="blog-logo" href="http://www.stefan-pfeiffer.de"><img src="https://avatars3.githubusercontent.com/u/427752?v&#x3D;3&amp;s&#x3D;460" alt="Dr. Stefan Pfeiffer" /></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-clojure">
+
+        <header class="post-header">
+            <h1 class="post-title">Calling variadic Java Functions from Clojure</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2014-12-04">04 December 2014</time>  on <a href="http://www.stefan-pfeiffer.de/tag/clojure/">clojure</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="sect1">
+<h2 id="_tl_dr">tl;dr</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When calling variadic Java functions with <code>&lt;Type&gt;&#8230;&#8203;</code> somewhere in its signature, wrap these
+arguments into <code>(into-array &lt;Type&gt; [argument1 argument2 …])</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_story">The Story</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure makes Java interop easy. But recently i stumbled a little bit when i tried to call
+a variadic (variable argument count) Java function. The function i had to call was
+<code>public static String format(Locale l, String format, Object&#8230;&#8203; args)</code>. I know there is <a href="https://clojuredocs.org/clojure.core/format"><code>format</code></a>
+in <code>(ns clojure.core)</code>, but it lacks the Locale support.</p>
+</div>
+<div class="paragraph">
+<p>I tried the naive approach:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" n))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which fails miserably:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ClassCastException java.lang.Double cannot be cast to [Ljava.lang.Object;  user/eval715</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The error message gives away how Java does variadic functions: <code>[L</code> is the type signature of an array.
+<code>Object&#8230;&#8203;</code> is just syntactic sugar for <code>Object[]</code>. Arrays must be something like <code>vec</code> in Clojure, right?
+Let&#8217;s try:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" [n]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nope, no progress here:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ClassCastException clojure.lang.PersistentVector cannot be cast to [Ljava.lang.Object;  user/eval717</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Luckily, there is the <a href="https://clojuredocs.org/clojure.core/into-array"><code>into-array</code></a> function in its <code>(into-array type aseq)</code> form that takes the type of the elements in the array instead of guessing them from the elements in <code>aseq</code>. Let&#8217;s try this one:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>user=&gt; (into-array Object [3.1415926])
+#&lt;Object[] [Ljava.lang.Object;@4351451d&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That looks like the type signature we need. Now we can guess the right way to call <code>String/format</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+    (String/format locale "%2.1f" (into-array Object [n])))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Yielding <code>"3,1"</code>. Finally there.</p>
+</div>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="http://www.stefan-pfeiffer.de/author/dl1ely/" style="background-image: url(https://avatars.githubusercontent.com/u/427752?v&#x3D;3)"><span class="hidden">Stefan Pfeiffer's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="http://www.stefan-pfeiffer.de/author/dl1ely/">Stefan Pfeiffer</a></h4>
+
+                    <p>Read <a href="http://www.stefan-pfeiffer.de/author/dl1ely/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Aachen, Germany</span>
+                    <span class="author-link icon-link"><a href="http://dl1ely.github.io">http://dl1ely.github.io</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Calling%20variadic%20Java%20Functions%20from%20Clojure&amp;url=http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.stefan-pfeiffer.de/2014/12/04/Calling-variadic-Java-Functions-from-Clojure.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'dl1ely-github-io'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://www.stefan-pfeiffer.de">Dr. Stefan Pfeiffer</a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script type="text/javascript" src="//www.stefan-pfeiffer.de/themes/casper/assets/js/jquery.fitvids.js?v=1469211438388"></script>
+    <script type="text/javascript" src="//www.stefan-pfeiffer.de/themes/casper/assets/js/index.js?v=1469211438388"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+= Calling variadic Java Functions from Clojure
+:published_at: 2014-12-04
+:hp-tags: clojure
+
+
+## tl;dr
+When calling variadic Java functions with `<Type>...` somewhere in its signature, wrap these 
+arguments into `(into-array <Type> [argument1 argument2 …])`.
+
+## The Story 
+
+Clojure makes Java interop easy. But recently i stumbled a little bit when i tried to call
+a variadic (variable argument count) Java function. The function i had to call was
+`public static String format(Locale l, String format, Object... args)`. I know there is https://clojuredocs.org/clojure.core/format[`format`]
+in `(ns clojure.core)`, but it lacks the Locale support.
+
+I tried the naive approach:
+
+```Clojure
+    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" n))
+```
+
+Which fails miserably:
+
+    ClassCastException java.lang.Double cannot be cast to [Ljava.lang.Object;  user/eval715
+
+The error message gives away how Java does variadic functions: `[L` is the type signature of an array.
+`Object...` is just syntactic sugar for `Object[]`. Arrays must be something like `vec` in Clojure, right?
+Let's try:
+
+```Clojure
+    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+        (String/format locale "%2.1f" [n]))
+```
+
+Nope, no progress here:
+
+    ClassCastException clojure.lang.PersistentVector cannot be cast to [Ljava.lang.Object;  user/eval717
+
+Luckily, there is the https://clojuredocs.org/clojure.core/into-array[`into-array`] function in its `(into-array type aseq)` form that takes the type of the elements in the array instead of guessing them from the elements in `aseq`. Let's try this one:
+
+    user=> (into-array Object [3.1415926])
+    #<Object[] [Ljava.lang.Object;@4351451d>
+
+That looks like the type signature we need. Now we can guess the right way to call `String/format`:
+
+```Clojure
+    (let [n         3.14159269
+          locale    (java.util.Locale. "de")]
+    (String/format locale "%2.1f" (into-array Object [n])))
+```
+
+Yielding `"3,1"`. Finally there.

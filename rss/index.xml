@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 18:17:18 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Calling variadic Java Functions from Clojure]]></title><description><![CDATA[<div class="sect1">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 20:48:15 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The (not so) subtle Difference between map and doseq]]></title><description><![CDATA[<div class="paragraph">
+<p>Recently, i did some easy reporting over CSV data using Clojure, and
+for that i had to separate the lines and look up duplicate IDs by adding
+new IDs to one <code>atom</code> and adding already seen ones to another <code>atom</code>.
+At the end i wanted to print the contents of the <code>atom</code> of duplicates.</p>
+</div>
+<div class="paragraph">
+<p>I read the CSV data using <a href="https://github.com/davidsantiago/clojure-csv"><code>clojure-csv</code></a> which gives me a vector of vectors
+with the data of each line. Now i wanted to process each line separately.</p>
+</div>
+<div class="paragraph">
+<p>Without much thinking, i used <code>map</code> to feed a function that worked on a single
+line. The code looked like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">(ns duplicates.core
+  (:gen-class))
+
+(require '[clojure-csv.core :as csv])
+
+(def seen-ids (atom #{}))
+(def duplicate-ids (atom #{}))
+
+(defn update-ids [v]
+ (let [id (nth v 1)]
+    (if (contains? @seen-ids rid) (swap! duplicate-ids conj id))
+    (swap! seen-ids conj id)))
+
+(defn -main
+  [&amp; args]
+  (let [rawdata (slurp args)
+        parseddata (rest (csv/parse-csv rawdata :delimiter \;))]
+    (map update-ids parseddata))
+  (println @duplicate-ids))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unexpectedly, after applying <code>map</code>, my <code>atom</code> of duplicates was empty, although i knew there were duplicates.</p>
+</div>
+<div class="paragraph">
+<p>After some thinking, i realized my function had not been called at all.
+This is incredibly obvious when reading only the first few words of the <code>map</code> <a href="https://clojuredocs.org/clojure.core/map">function doc string</a>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Returns a lazy sequence…</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <strong>lazy</strong> sequence only gets evaluated when needed, that is when elements of the mapped collection are asked for. In my case that was not the case, the sequence <code>map</code> did create was discarded, as i was only interested in the <strong>side-effect</strong> of updating the <code>atom</code> <code>duplicate-ids</code>.</p>
+</div>
+<div class="paragraph">
+<p>This is surely a beginners mistake, but still it took me a minute to realize that. Now, a solution was easy: Instead of using <code>map</code>, let&#8217;s use <a href="https://clojuredocs.org/clojure.core/doseq"><code>doseq</code></a> that calls the function in turn, executing all possible side effects und returning <code>nil</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-clojure" data-lang="clojure">(doseq [v parseddata] (update-ids v))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, i had the IDs of my duplicate data sets in my <code>atom</code>.
+So always be sure not to step into that small trap of laziness.</p>
+</div>]]></description><link>http://www.stefan-pfeiffer.de/2015/02/06/The-not-so-subtle-Difference-between-map-and-doseq.html</link><guid isPermaLink="true">http://www.stefan-pfeiffer.de/2015/02/06/The-not-so-subtle-Difference-between-map-and-doseq.html</guid><category><![CDATA[clojure]]></category><category><![CDATA[ beginner]]></category><dc:creator><![CDATA[Stefan Pfeiffer]]></dc:creator><pubDate>Fri, 06 Feb 2015 00:00:00 GMT</pubDate></item><item><title><![CDATA[Calling variadic Java Functions from Clojure]]></title><description><![CDATA[<div class="sect1">
 <h2 id="_tl_dr">tl;dr</h2>
 <div class="sectionbody">
 <div class="paragraph">

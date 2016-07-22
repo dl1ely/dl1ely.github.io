@@ -1,7 +1,7 @@
 = Calling variadic Java Functions from Clojure
 :published_at: 2014-12-04
 :hp-tags: clojure
-
+:source-highlighter: highlightjs
 
 ## tl;dr
 When calling variadic Java functions with `<Type>...` somewhere in its signature, wrap these 
@@ -16,11 +16,13 @@ in `(ns clojure.core)`, but it lacks the Locale support.
 
 I tried the naive approach:
 
-```Clojure
+
+[source,clojure]
+----
     (let [n         3.14159269
           locale    (java.util.Locale. "de")]
         (String/format locale "%2.1f" n))
-```
+----
 
 Which fails miserably:
 
@@ -30,11 +32,12 @@ The error message gives away how Java does variadic functions: `[L` is the type 
 `Object...` is just syntactic sugar for `Object[]`. Arrays must be something like `vec` in Clojure, right?
 Let's try:
 
-```Clojure
+[source,clojure]
+----
     (let [n         3.14159269
           locale    (java.util.Locale. "de")]
         (String/format locale "%2.1f" [n]))
-```
+----
 
 Nope, no progress here:
 
@@ -47,10 +50,11 @@ Luckily, there is the https://clojuredocs.org/clojure.core/into-array[`into-arra
 
 That looks like the type signature we need. Now we can guess the right way to call `String/format`:
 
-```Clojure
+[source,clojure]
+----
     (let [n         3.14159269
           locale    (java.util.Locale. "de")]
     (String/format locale "%2.1f" (into-array Object [n])))
-```
+----
 
 Yielding `"3,1"`. Finally there.

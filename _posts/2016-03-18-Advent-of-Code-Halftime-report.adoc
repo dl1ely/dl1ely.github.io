@@ -1,0 +1,64 @@
+= Advent of Code - Halftime report
+:published_at: 2016-03-18
+:hp-tags: clojure
+
+Sometime in mid December 2015 i discovered http://adventofcode.com/[Advent of Code] and was immediately hooked by the nature of the programming challenges given there. You are given a problem with some simple examples that can lead your test-driven development, and a set of inputs. You have to provide the answer to the problem for the given inputs. It is only the answer that counts, not the way you achieved the solution. To discourage spoilers, there are many different set of inputs for different participants. A right answer gives you one star. After solving the first problem of every day is solved, you get access to a second, slightly modified problem with the same input. Solving this gives you a second star. There are 24 two-part problems that were published from the 1st to the 24th of December. In sum one can achieve 48 stars, 2 for each day. 
+
+I discovered the page late, but started from day 1 anyway. This looked like fun, and i wanted to train my Clojure knowledge more. Unfortunately, during the next days i only caught up only to day 9 or so, then christmas holidays were there and no free time available. Luckily, the site stayed up till now and one can still solve the problems. Despite the festive theming of the problems, this is still fun today, and so i want to continue solving the problems one after one until i have earned my 48 stars.
+
+Being at day 12 now, halfway through, i want to elaborate on what i experienced. Some problems were rather easy to solve, but some were rather tricky and required changing the methodology for solving. My solutions are on https://github.com/dl1ely/advent-of-code[Github], but they are not well documented nor polished.
+
+## day 1 - counting the parentheses
+What a nice start into the 24 problems when using a LISP. Outputting the balance of the parenthesis was very easy by using `frequencies` on the input string and subtracting the frequency of `)` from `(`. Unfortunately, for the second part of the problem, that didn't help, i needed to abort when hitting 0. So i went for a `reduce` that printed the current index when hitting a negative sum. The first of the outputs was the first balanced parenthesis.
+
+## day 2 - calculating gift wrap paper
+Nothing special here - parsing the string input data to list values, then defining the functions that map the dimensions to areas (plus slack) and lengthes. Then reduce the values to their sums. Easy!
+
+## day 3 - visiting houses
+This one was also rather straightforward by keeping track of the visited houses with a hash set holding the X-Y-coordinates, and a reducing function that keeps track of the current position. After processing all arrows of the input, the number of entries in the set is the number of visited houses. The hash set ignores the already visited positions, so we do not have to handle that explicitly.
+
+The second part of the puzzle was very elegant, too. Using `take-nth 2` on the original input twice (with an offset of one) Santa and his robot get their individual routes. Both produce a hash set of visited locations using the function from the first part of the puzzle. Then boths sets get merged using `clojure.set.union`, and again the count of set members is the number of visited houses.
+
+## day 4 - finding hashes starting with zeroes
+Using Clojure Java interop (and copy-and-pasting a convenience clojure MD5 wrapper function from StackOverflow) this was also not too hard. Taking the first hash from a infinite lazy sequence of hashes that were filtered for starting zeroes did the trick.
+
+## day 5 - naughty strings and nice strings
+This was easily solved by defining the right predicates, combining them with `and` and filtering the input strings. The three-vowels-rule was checked by using our friend `frequency` again and adding up the vowel frequencies only, double letters were detected by partitioning the strings in pairs of two characters and checking if at least one of them had two identical ones.
+
+The second part of the puzzle went similar. Finding the non-overlapping bigrams was done by trying to replace each bigram in the input string with an empty string and testing if the length of the resulting string differed by more than 2. If yes, another identical bigram must have been present in the string.
+
+## day 6 - christmas lights
+This was a harder one. At first i wanted to keep track of the lit lights in a hash set of coordinates and manipulate them by an elaborate use of `clojure.set.difference` and `clojure.set.union`. That worked fine in some test code, but due to immutability, copying the hash set again and again led to GC problems that i could not fix with JVM parameters when using the real, big data set. I resorted to using a „native” Java array that i wrote with `aset` and read with `aget`. I shot myself in the foot by forgetting about the mutability of Java arrays, but finally, all worked out. Each cells content (an int) represented a dim light when the number was even and a lit light wenn the number was odd. Changing the lights was just a matter of incrementing the cells in the right way.
+
+Luckily, for the second part of the puzzle, the hash set would not have helped me anyway, but the array with ints was the right way to go. Implementing brightness was straightforward.
+
+## day 7 - wires
+This one was also a little bit tricky to get right. I parsed the text input into maps with the wire names as keys and the commands and possible operands as vector value. Then i resolved the last wire by resolving its command and propagating backwards recursively. For executing the different commands, i used a multi method that dispatched on the command name. Great gain by using Clojure! Sure enough, i hit the stack limit with the big input data set. Recursion can be bad. I circumvented that by memoizing the results of wire resolving, replacing the command associated with a wire with its resolved value to use in future computations, once its resolved value was known. Another small problem was the limitation to 16 bits unsigned, so intermediate results had to be `bit-and`ed with 0xFFFF.
+
+The second part of the puzzle was solved by manually editing the input with the new value for wire b from part one and solving again.
+
+## day 8 - character encodings
+As always, character encodings suck. This one was hard to get right with all the edge cases. I finally did it after many unsuccessful tries with two functions using `recur` to loop over the strings, looking 2 characters ahead and doing the right things in two `condp` constructs. I was happy i made it „somehow“ and moved on…
+
+## day 9 - traveling santa man
+The number of cities to visit was small enough to solve it brute force: Try all permutations of cities (`clojure.math.combinatorics` to the rescue!), calculate the length of the route for each, then sort for the shortest route (part 1) or the longest route (part 2). No surprises here.
+
+## day 10 - look and say
+Two nested `recur` loops did the job of counting the consecutive digits and producing the next sequence. `iterate` made that a infinite lazy sequence from which i realized the 40th (part 1) and 50th (part 2) sequence. It was surprising how much longer it took to realize the 10 sequences between 40 and 50 than to realize the first 40 sequences. But finally, the program ended and day 10 was solved.
+
+## day 11 - password policies
+Day 11 did wear me down. I failed at producing correct „incremented“ passwords to test the conditions on. I could not get it right quickly and finally made a long break for this puzzle. One day when i tried to get my Clojure-deprived brain in balance again, i started this puzzle from scratch using http://gorilla-repl.org/[Gorilla REPL], which makes for a much nicer interactive development for those small puzzles. 
+
+I still struggled to get the non-overlapping duplets of characters right, and finally resorted to a less-than-elegant solution that returned the indices of all found duplets and counts them if they are least 2 apart, thus skipping over the overlapping pairs. I am not satisfied with this solution, but it worked. After some experimenting i also got the generation of the „next“ password right and could filter an iterated list of them starting with my puzzle input to get the first valid one. 
+
+Seeing the result i realised it woult most likely have been quicker to solve that puzzle by hand on a piece of paper. But well, we are here to learn, aren't we?
+
+## day 12 - sum the ints
+I used `clojure.data.json` to parse the input data to a data structure and then recursively calculated the sums of the ints in the subordinate structures, flattening vectors and taking only the vals of maps along the way, branching on the type of the object i was looking at, using `integer?` for atomic values, `map?` for maps and `vector?` for vectors. If none of the predicates matches, we return 0 to skip over strings. This could have been done in a multimethod that dispatches on the type of the argument, but for this simple case, i went for `cond`.
+
+Solving the second part of the puzzle was only a matter of having a predicate that checks for any value being „red“ in the map, and returning 0 instead of the sum of the values if it is found.
+
+I could have refactored and put the predicate as a parameter to the value-summing function, but i resorted to doing copy-and-paste for the sake of this puzzle, directly inserting the predicate.
+
+## going on…
+This was the first half of the Advent of Code 2015, but i will continue to solve all puzzles during the next days, and i hope there will be an Advent of Code 2016. I promise to not be that late to the party as i was this time. Thanks to http://was.tl/[Eric Wastl] for creating this great page and being so creative on the puzzles.

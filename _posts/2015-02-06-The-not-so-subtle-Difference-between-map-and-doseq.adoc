@@ -1,0 +1,57 @@
+= The (not so) subtle Difference between map and doseq
+:published_at: 2015-02-06
+:hp-tags: clojure, beginner
+
+
+Recently, i did some easy reporting over CSV data using Clojure, and
+for that i had to separate the lines and look up duplicate IDs by adding
+new IDs to one `atom` and adding already seen ones to another `atom`.
+At the end i wanted to print the contents of the `atom` of duplicates.
+
+I read the CSV data using https://github.com/davidsantiago/clojure-csv[`clojure-csv`] which gives me a vector of vectors
+with the data of each line. Now i wanted to process each line separately.
+
+Without much thinking, i used `map` to feed a function that worked on a single
+line. The code looked like this:
+
+[source,clojure]
+----
+(ns duplicates.core
+  (:gen-class))
+
+(require '[clojure-csv.core :as csv])
+
+(def seen-ids (atom #{}))
+(def duplicate-ids (atom #{}))
+
+(defn update-ids [v]
+ (let [id (nth v 1)]
+    (if (contains? @seen-ids rid) (swap! duplicate-ids conj id))
+    (swap! seen-ids conj id)))
+
+(defn -main
+  [& args]
+  (let [rawdata (slurp args)
+        parseddata (rest (csv/parse-csv rawdata :delimiter \;))]
+    (map update-ids parseddata))
+  (println @duplicate-ids))
+----
+
+Unexpectedly, after applying `map`, my `atom` of duplicates was empty, although i knew there were duplicates.
+
+After some thinking, i realized my function had not been called at all.
+This is incredibly obvious when reading only the first few words of the `map` https://clojuredocs.org/clojure.core/map[function doc string]:
+
+    Returns a lazy sequence…
+
+A *lazy* sequence only gets evaluated when needed, that is when elements of the mapped collection are asked for. In my case that was not the case, the sequence `map` did create was discarded, as i was only interested in the *side-effect* of updating the `atom` `duplicate-ids`.
+
+This is surely a beginners mistake, but still it took me a minute to realize that. Now, a solution was easy: Instead of using `map`, let's use https://clojuredocs.org/clojure.core/doseq[`doseq`] that calls the function in turn, executing all possible side effects und returning `nil`:
+
+[source,clojure]
+----
+(doseq [v parseddata] (update-ids v))
+----
+
+And finally, i had the IDs of my duplicate data sets in my `atom`.
+So always be sure not to step into that small trap of laziness.

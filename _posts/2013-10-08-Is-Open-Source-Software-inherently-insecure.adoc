@@ -1,0 +1,15 @@
+= Is Open Source Software inherently insecure?
+:published_at: 2013-10-08
+:hp-tags: open source, security
+
+
+Recently, http://blog.fimsch.net[Konrad] wrote an http://blog.fimsch.net/2013/09/on-open-source-security/[article] about his thoughts that commercial software products may be more secure than (or at least as secure as) their open source counterparts, because software companies can afford to do serious testing, quality assurance and audits.
+
+I am not quite with him: While these steps are helping to find security vulnerabilities, they are still closed by their nature. They are done by people selected and paid by the company whose products are under scrutiny. There is no open process or peer review. I even have to trust the company that they did the tests and audits at all. Basically, i have to trust them — and trust is often shattered in those days. What about intentional backdoors in their products? They easily pass their tests, and their audits will see but ignore them. Not good.
+
+What makes open source products more secure for me is the pure possibility that someone from the community or academia takes them under scrutiny without asking for permission, without announcing beforehand, in an possibly open and peer-reviewable process.
+Their might be backdoors or intentional security vulnerabilities in open source software that go unnoticed for some time, but every attacker should fear that he will be discovered and dragged into publicity. I trust this type of pressure more than promises of commercial software companies in the field of security.
+
+https://www.schneier.com/blog/archives/2013/09/how_to_remain_s.html[Bruce Schneier basically says the same] when he advises to stick to open source implementations of Standards instead of closed source proprietary. But still, http://jaxenter.de/artikel/Ich-bin-Open-Source-Entwickler-Trauen-Sie-mir[do not trust someone or something just because it comes from the domain of open source (german article)]. Just trust open, publicized, peer-reviewed audits from outside people.
+
+And remember: There can be never 100% certainty. Like you can proof no physics theory "true", just test it in as many cases as possible, you can never be sure there are absolutely no backdoors or intentional security vulnerabilities in software.

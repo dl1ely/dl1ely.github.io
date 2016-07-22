@@ -1,0 +1,11 @@
+= BOB Konferenz 2015
+:published_at: 2015-02-12
+:hp-tags: clojure
+
+On 2015-01-23 i attended http://bobkonf.de[BOB Konferenz 2015] in Berlin. BOB stands for *„Best Of Breed“* in modern software development, quite a mouthful. It was hosted by a company that makes medical software. For me, that was quite a unusual concept, being on a conference in the rooms of another company, but there was enough space und sufficient room for the tutorials. It offered a day with http://bobkonf.de/2015/programm.html[2 tracks of talks and 2.5 tracks of tutorials]. While also featuring http://www.erlang.org/[Erlang], http://en.wikipedia.org/wiki/Swift_%28programming_language%29[Swift] and language-agnostic topics, one of the main pillars was functional programming and http://clojure.org/[Clojure]. Beside the keynote, i watched a http://bobkonf.de/2015/zuther.html[microservice-deployment related talk] and a http://bobkonf.de/2015/middelkoop.html[talk about workflows expressed in grammars] (which was way too academic and above my knowledge of grammar formalisms, unfortunately). 
+
+After the lunch break, i attended a http://bobkonf.de/2015/gilliar.html[tutorial on functional GUI programming in Clojure with Reagent]. More or less, this was 90% an introduction into Clojure only, with some display and short explanation of the http://holmsand.github.io/reagent/[Reagent] stuff at the very end when time ran out. I expected more from that tutorial, but it is always hard to get all participants to the same level of knowledge. 
+
+After coffee break, the last two talks where about http://bobkonf.de/2015/kamphausen.html[Clojures STM] and a nice talk about http://bobkonf.de/2015/stepien.html[using Clojure in serving content to mobile devices via an REST API]. I enjoyed both very much. That concluded the day, which left me undecided: Parts disappointed me, while other parts were very much worth their time. If there will be a BOB Konferenz 2016, i will have a look at the program and will decide then whether i take part again. Perhaps i should favor tutorials over talks. I think the knowledge gain can be bigger. In review, i should have taken the tutorial on Erlang, as i do not know much about it up to now.
+
+The next day, i visited http://www.clojured.de[:clojureD], the (english language) german Clojure conference in Berlin.

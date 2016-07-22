@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 21:01:37 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[:clojureD 2015]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dr. Stefan Pfeiffer]]></title><description><![CDATA[All Things Programming - mostly functional!]]></description><link>http://www.stefan-pfeiffer.de</link><generator>RSS for Node</generator><lastBuildDate>Fri, 22 Jul 2016 21:06:55 GMT</lastBuildDate><atom:link href="http://www.stefan-pfeiffer.de/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Bobkonf and :clojureD 2016]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This year again, <a href="http://www.bobkonf.de/2016/de/">Bobkonf</a> and <a href="http://www.clojured.de">:clojureD</a> made a back-to-back appearance on the 19th and 20th of February in Berlin and i was very happy to participate in both.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bobkonf">BobKonf</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Friday at BobKonf i especially enjoyed the Clojure talk of <a href="https://twitter.com/michaelvitz">Michael Vitz</a> which is recorded <a href="https://www.innoq.com/en/talks/2016/02/clojure-webapps/">here</a>, and the „Specification by Example“ interactive workshop held by <a href="https://twitter.com/nicolerauch">Nicole Rauch</a>. This workshop first threw me into a very controversial mood, but after a slow start all the pieces fit together and i saw the big picture. These are the really valuable events, when you do not hear things that you already know and believe, but that overthrow some of the very beaten paths in the brain. Thanks for that!</p>
+</div>
+<div class="paragraph">
+<p>Like last year, the event was well organized and the location was still suitable.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__clojured">:clojureD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Saturday it was Clojure-time! At <a href="http://www.clojured.de">:clojureD</a> the number of participants jumped to 180 this year, yielding a quite impressive group photo on the stairs of the Beuth Hochschule.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://pbs.twimg.com/media/CbprIrbW8AAL2pK.jpg" alt="Group Photo">
+</div>
+</div>
+<div class="paragraph">
+<p>Luckily, the second smaller lecture hall was changed to a bigger one this year, so everyone could find a seat.</p>
+</div>
+<div class="paragraph">
+<p>The talks were great again, right from the start, <a href="https://twitter.com/toxi">Karsten Schmidt</a> blew us away with his <a href="https://www.youtube.com/watch?v=4w2kpSL68nM">keynote about creative uses of Clojure</a>. I am not a very creative or art-loving guy, but what he showed was really great. After that i attended talks about actor systems and Erlang (on a Clojure conference!). After the lunch break, i watched Joel Kuiper in his first talk at a programming conference <a href="https://www.instagram.com/p/BCAlmUkMU1O/">improvising on the black board</a> until the beamer worked again (Great job, Joel!). Wrapping up with experience reports about React Native, type systems and managing your dependencies (in the „DI” sense, not the „lein“ or „boot” sense), i left this wonderful conference. It is very affordable and has great content. I will return in 2017 for sure!</p>
+</div>
+</div>
+</div>]]></description><link>http://www.stefan-pfeiffer.de/2016/03/17/Bobkonf-and-clojureD-2016.html</link><guid isPermaLink="true">http://www.stefan-pfeiffer.de/2016/03/17/Bobkonf-and-clojureD-2016.html</guid><category><![CDATA[clojure]]></category><dc:creator><![CDATA[Stefan Pfeiffer]]></dc:creator><pubDate>Thu, 17 Mar 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[:clojureD 2015]]></title><description><![CDATA[<div class="paragraph">
 <p>On 2015-01-24, one day after and in cooperation with the <a href="http://www.bobkonf.de">BOB Konferenz</a>, there was the <a href="http://www.clojured.de/">:clojureD</a> conference in Berlin. It was held in the rooms of a university, offering one nice big auditorium, and another, much smaller room that reminded me of the physics room in high school. These rooms hosted the <a href="http://www.clojured.de/archive/2015/">two tracks</a> that were offered.</p>
 </div>
 <div class="paragraph">

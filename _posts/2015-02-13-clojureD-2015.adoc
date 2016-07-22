@@ -1,0 +1,21 @@
+= :clojureD 2015
+:published_at: 2015-02-13
+:hp-tags: clojure
+
+On 2015-01-24, one day after and in cooperation with the http://www.bobkonf.de[BOB Konferenz], there was the http://www.clojured.de/[:clojureD] conference in Berlin. It was held in the rooms of a university, offering one nice big auditorium, and another, much smaller room that reminded me of the physics room in high school. These rooms hosted the http://www.clojured.de/archive/2015/[two tracks] that were offered.
+
+I started by watching the http://www.clojured.de/archive/2015/#details-10[nice talk] of https://twitter.com/iamdrowsy[Albrecht Schmidt] about his entry in the https://helloworldopen.com/[Hello World Open 2015] bot programming competition. Beside the general, high polished look of his slides, i especially liked that he recorded „live coding” as a screencast and embedded it into the slides. That was just the right balance between static code display (which is too boring) and real live coding, which is in general too error-prone and slow. So one could easily follow the gradual development of the components along the talk. I enjoyed that talk a lot.
+
+The http://www.clojured.de/archive/2015/#details-8[next talk] for me was about https://github.com/Engelberg/instaparse[Instaparse], given by https://twitter.com/stka23[Stefan Kamphausen] which i knew from his talk one day ago at the BOB Konferenz. So i knew i could expect a fresh and funny presentation, and I was not disappointed. He did the whole presentation from Emacs, with no slides at all. 
+
+After the lunch break, my track continued with http://www.clojured.de/archive/2015/#details-16[Michael Klishin talking] about the work of http://clojurewerkz.org/[ClojureWerkz]. He held his talk via Google Hangouts, but unfortunately, his slides suffered a lot from this way of presenting, they lacked some stuff, animations and the formatting went haywire. That was not his fault, but still it made the talk challenging to follow.
+
+The http://www.clojured.de/archive/2015/#details-9[next talk] was about https://github.com/marick/Midje[Midje], which i know already a bit, but still that talk had some interesting new insights.
+
+It continued with http://www.clojured.de/archive/2015/#details-15[„Generative Testing: Properties, State and Beyond“] from https://twitter.com/janstepien[Jan Stępień], also a speaker i already enjoyed the day before. Today he held that interesting talk about applying generative testing to real world scenarios, using https://github.com/clojure/test.check[test.check]. I already heard about generative testing, but my scepticism was high. It still is, but i saw cases in his talk where it really helps. Perhaps it is time to gather some own experience with it.
+
+This track wrapped up with a http://www.clojured.de/archive/2015/#details-0[talk that compared three different libraries for logic programming by showing how each of them solves sudoku]. It was an interesting talk, but right now i see no need for me to apply logic programming anywhere. You could easily sense that the speaker is an university lecturer, as his style was very much like that. But he was still entertaining and (not unimportant so late in the day) enthusiastic about his topic.
+ 
+The day concluded with four lightning talks of varying length, quality and topic. Reasoning about http://www.clojured.de/archive/2015/#details-18[time travel] and http://www.clojured.de/archive/2015/#details-3[putting Clojure in a bubble] were my favorites.
+
+I enjoyed the conference very much and i hope to take part again in 2016!

@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/spfeiffer
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.stefan-pfeiffer.de
+  * I am spfeiffer (https://keybase.io/spfeiffer) on keybase.
+  * I have a public key with fingerprint 74B0 0934 0669 B3FF E3F6  F1AC 32A4 3081 ACDD 5DA3
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101954de6684a10e6f4d7edc87cac1009cd26cdd0b2490abb92a70aee5cc27a527a0a",
+            "fingerprint": "74b009340669b3ffe3f6f1ac32a43081acdd5da3",
+            "host": "keybase.io",
+            "key_id": "32a43081acdd5da3",
+            "kid": "0101954de6684a10e6f4d7edc87cac1009cd26cdd0b2490abb92a70aee5cc27a527a0a",
+            "uid": "7bc603751a0a62f86500790760973b00",
+            "username": "spfeiffer"
+        },
+        "revoke": {
+            "sig_ids": [
+                "402a5d8c5e899379104c3d24d4a8274b7a2f45b34b3d5e0a184630fa617d2ba40f"
+            ]
+        },
+        "service": {
+            "hostname": "www.stefan-pfeiffer.de",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1458291278,
+    "expire_in": 157680000,
+    "prev": "e0c5079d73348c9c952f4dc4a97a2d4acdae6041ea8c36d59840996fa335e5af",
+    "seqno": 43,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.51
+Comment: https://keybase.io/crypto
+
+yMJ1AnicrVJvaFZVHH7n35pMJRAL/TAODmWude49/+55IZX1IQbzzySnlvJy/t13
+123vfbv3vvvDnKJp9UGGkUQQRJQfLAWdk2pIVqN3DQrUD0E1lubAolXIWFOoZue+
+6Lc+euFw7z08z/N7nuecr2oWZqqr3NPwyLnJ/R9UffPlfCnTNj26rR/IUPeBbD/o
+MJWX6dQmTnIdgQZZAB3ocIK1odTDwoGG+lgzo5XHlFAOhFxplyqtoXQxh0JK7goG
+hTFEKZcJYhcUoAH4QSFvomIUFBIry7C0VIQhpVwi3zfIp74jFHIFRtCzX1oTLZAl
+todxyrDmpIhNYxDaPfuTq9j7H/wj9l2qyDGpKESMOHaTur5HCYSMQ0YhZ8hGSYGx
+iQqiy1h0XPRNYENFYKABRKY77DBpsXGQt65jkH0JYOgKoj1FjMc5YtyBWCHtYo2F
+59pymHB9TCTCEmlioHA8TBH0BXWYdqXA0Af7rbYd2R2oinha04PxPT09jXFifFF4
++qGRRm2sxWIUJqEKOy2mPUmK2dRe0lescIzMPVDLyaCg7WlZQreJ4iAsgKxjkSoJ
+UnkHE8/ljsu8BmB6i0FkckGKIIx60D7pGNNtJQ1UxJakGULYU1xxYjNphQW36WxQ
+pYWhEDtGeApRTbiHIefUFwgRQ4QP0nwvF0KQxcj6FPm02SBfEEkpMmBg9It9izJV
+1Zklixek1zhT/fjKh5e7aW7p/cM1C/54cvmqj8aeu7S7f+DEx0OTrY89caw8OD53
+daj2nxVNF4+fPbCmt+/tpqBt2/sn1+08+nvLoTOsedef374y0z5yo4RnBnbWffbX
+hprnb8s9h8dqdv8y07Om+c367b/WiQ9n/22tHZ/1ajt/LM+vjpK72XIwf3Ho+1d/
+IIunW36aWF+/9I1jpYn819eevXW5a89aObJ6/W+fnzz1+lvDq8YOTl0ZXoTOtw1/
+uoNuXf7J4FTrO3TvmU3F7RufGrlz5/hktZSnzu27/+Lg3zONK3e9+8yN26OvrYt3
+XMhn35u6vuXA+AvNHT/PdvaumCjfvHm0dcNmf9l3l+fKLV79vStB3bWFXXTt6brp
+tlv/AbFxZag=
+=2zPM
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/spfeiffer
+
+==================================================================
